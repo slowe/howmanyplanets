@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How many planets are there?</title>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript">
+
+	var data;
+
+	$(document).ready(function(){
+	
+		data = [{
+			"year": 1600,
+			"planets":{
+				"count":7,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Saturn"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1610,
+			"planets":{
+				"count":11,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Io","Europa","Ganymede","Callisto","Saturn"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1655,
+			"planets":{
+				"count":12,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Io","Europa","Ganymede","Callisto","Saturn","Titan"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1671,
+			"planets":{
+				"count":13,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Io","Europa","Ganymede","Callisto","Saturn","Titan","Iapetus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1672,
+			"planets":{
+				"count":14,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Io","Europa","Ganymede","Callisto","Saturn","Rhea","Titan","Iapetus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1684,
+			"planets":{
+				"count":16,
+				"names":["Sun","Mercury","Venus","Moon","Mars","Jupiter","Io","Europa","Ganymede","Callisto","Saturn","Tethys","Dione","Rhea","Titan","Iapetus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1758,
+			"planets":{
+				"count":6,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1779,
+			"planets":{
+				"count":7,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1801,
+			"planets":{
+				"count":8,
+				"names":["Mercury","Venus","Earth","Mars","Ceres","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1802,
+			"planets":{
+				"count":9,
+				"names":["Mercury","Venus","Earth","Mars","Ceres","Pallas","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1804,
+			"planets":{
+				"count":10,
+				"names":["Mercury","Venus","Earth","Mars","Juno","Ceres","Pallas","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1807,
+			"planets":{
+				"count":11,
+				"names":["Mercury","Venus","Earth","Mars","Vesta","Juno","Ceres","Pallas","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1845,
+			"planets":{
+				"count":12,
+				"names":["Mercury","Venus","Earth","Mars","Vesta","Astraea","Juno","Ceres","Pallas","Jupiter","Saturn","Uranus"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1846,
+			"planets":{
+				"count":13,
+				"names":["Mercury","Venus","Earth","Mars","Vesta","Astraea","Juno","Ceres","Pallas","Jupiter","Saturn","Uranus","Neptune"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1847,
+			"planets":{
+				"count":8,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 1930,
+			"planets":{
+				"count":9,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto"]
+			},
+			"dwarf":{
+				"count":0,
+				"names":[""]
+			}
+		},{
+			"year": 2006,
+			"planets":{
+				"count":8,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"]
+			},
+			"dwarf":{
+				"count":3,
+				"names":["Ceres","Pluto","Eris"]
+			}
+		},{
+			"year": 2008,
+			"planets":{
+				"count":8,
+				"names":["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"]
+			},
+			"dwarf":{
+				"count":5,
+				"names":["Ceres","Pluto","Haumea","Makemake","Eris"]
+			}
+		}]
+
+		var now = new Date();
+		var year = now.getFullYear();
+
+		$("#slider").slider({
+			min: 1600,
+			max: now.getFullYear(),
+			value: now.getFullYear(),
+			create: function(event, ui){
+				updateData(now.getFullYear())
+			},
+			slide: function(event, ui){
+				updateData(ui.value)
+			}
+		});
+		
+		function updateData(year){
+			$(".titleyear").html(" in "+year);
+			var i;
+			for(i = data.length-1 ; i > 0 ; i--){
+				if(year >= data[i].year) break;
+			}
+			var output = 'In '+year+' there were<div class="count">'+data[i].planets.count+'<\/div>';
+			//if(data[i].dwarf.count > 0) output += ' and <div class="count">'+data[i].dwarf.count+'<\/div> dwarf planets';
+			$("#output").html(output)
+			
+			var planets = "";
+			for(var p = 0; p < data[i].planets.names.length; p++){
+				planets += '<div class="planet '+data[i].planets.names[p]+'"><div class="disc"><\/div><div class="label">'+data[i].planets.names[p]+'<\/div><\/div>';
+			}
+			$("#planets").html(planets)
+		
+		}
+
+	})
+	</script>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="ui.css">
+</head>
+<body class="SOL">
+	
+<div class="outer">
+<div class="middle">
+<div class="inner">
+
+	<div id="container">
+		<h1>How many planets are there in the Solar System?</h1>
+		<p>The answer has varied since the invention of the telescope. Choose a year...</p>
+		<div id="controls">
+			<div id="range">
+				<div id="syear">1600</div>
+				<div id="eyear">2015</div>
+			</div>
+			<div id="slider"></div>
+		</div>
+		<div id="output"></div>
+	</div>
+	<div id="planets"></div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
