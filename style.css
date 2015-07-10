@@ -66,5 +66,6 @@ select { font-size: 1em; }
 #info:hover, #info:focus { opacity: 1; }
 
 @media (max-width: 500px), (max-device-width: 500px) {
-	#container { max-width: 700px; margin: auto; margin-top: 2em; }
+	#container { max-width: 90%; margin: auto; margin-top: 2em; }
+	#info { margin-bottom: 1em; height: auto; }
 }
