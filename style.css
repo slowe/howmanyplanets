@@ -62,7 +62,7 @@ select { font-size: 1em; }
 .Uranus .disc { font-size: 3em; background-color: #7465ab; }
 .Neptune .disc { font-size: 3em; background-color: #62b6ac; }
 .Pluto .disc { font-size: 0.8em; background-color: #7465ab; }
-#info { opacity: 0.2; }
+#info { opacity: 0.2; height: 2em; }
 #info:hover, #info:focus { opacity: 1; }
 
 @media (max-width: 500px), (max-device-width: 500px) {
